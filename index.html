@@ -24,7 +24,7 @@
     <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100">
         <div class="bg-indigo-600 p-8 text-white text-center">
             <h1 class="text-3xl font-bold">Onsite Commission Opportunity Calculator</h1>
-            <p class="text-indigo-100 mt-2 italic">Estimate the Incremental Revenue That An Onsite Commission Program Can Have for Your Business</p>
+            <p class="text-indigo-100 mt-2 italic">Adding Creator UGC to your site drives higher conversion rates, and an Onsite Commission Program provides the scalable engine to power it. Use our free estimator to calculate the incremental revenue impact Onsite Commissions can deliver for your business."</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 p-8">
@@ -45,7 +45,7 @@
                         <input type="number" id="visitors" placeholder="e.g. 1,000,000" class="calc-input w-full p-3 border border-gray-300 rounded-lg outline-none">
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">What is Your Current Site Visitor Conversion Rate Across All Channels?</label>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">What is Your Unique Visitor Conversion Rate Across All Channels?</label>
                         <input type="number" id="baselineCR" placeholder="e.g. 1.6" step="0.1" class="calc-input w-full p-3 border border-gray-300 rounded-lg outline-none">
                     </div>
                     <div>
@@ -56,8 +56,8 @@
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Where Do You Mostly Place Creator UGC Currently On Your Site Today?</label>
                         <select id="placement" class="calc-input w-full p-3 border border-gray-300 rounded-lg outline-none bg-white font-medium">
                             <option value="" disabled selected>Select placement...</option>
-                            <option value="0.40">Our Creator UGC is Mostly Above the Fold</option>
-                            <option value="0.20">Our Creator UGC is Mostly Below the Fold</option>
+                            <option value="0.40">Our Creator UGC is Mostly Above The Fold</option>
+                            <option value="0.20">Our Creator UGC is Mostly Below The Fold</option>
                         </select>
                     </div>
                 </div>
@@ -68,32 +68,30 @@
 
             <div id="resultsContainer" class="bg-indigo-50 p-8 rounded-2xl border border-indigo-100 flex flex-col justify-between relative overflow-hidden">
                 <div id="lockOverlay" class="absolute inset-0 z-10 flex items-center justify-center p-6 text-center bg-indigo-50/60 backdrop-blur-sm">
-    <div class="bg-white p-6 rounded-2xl shadow-xl border border-indigo-100 flex flex-col items-center">
-        <span class="text-3xl mb-2">📊</span>
-        <p class="text-indigo-900 font-bold leading-tight">Enter your data to<br>calculate lift</p>
-    </div>
-</div>
+                    <div class="bg-white p-6 rounded-2xl shadow-xl border border-indigo-100 flex flex-col items-center">
+                        <span class="text-3xl mb-2">📊</span>
+                        <p class="text-indigo-900 font-bold leading-tight">Enter Your Data to<br>Calculate Sales Lift</p>
+                    </div>
+                </div>
                 <div id="resultsBlurArea" class="blur-result">
                     <h2 class="text-indigo-900 uppercase tracking-widest text-xs font-black mb-6 text-center">Custom Opportunity Report</h2>
                     <div class="text-center mb-10">
-                        <p class="text-indigo-700 font-medium italic text-sm">Incremental Revenue Lift</p>
+                        <p class="text-indigo-700 font-medium italic text-sm">Incremental Sales Lift</p>
                         <p id="incrementalSales" class="text-5xl font-black text-indigo-600 mt-2">$0</p>
                     </div>
                     <div class="space-y-4">
                         <div class="flex justify-between items-center bg-white p-4 rounded-xl shadow-sm border border-indigo-100">
-                            <span class="text-gray-600 text-sm font-medium">Total Sales Lift %</span>
+                            <span class="text-gray-600 text-sm font-medium">Incremental Sales Lift %</span>
                             <span id="salesLift" class="text-green-600 font-bold text-lg">+0%</span>
                         </div>
-                        <div class="flex justify-between items-center bg-white p-4 rounded-xl shadow-sm border border-indigo-100">
-                            <span class="text-gray-600 text-sm font-medium italic">Your Estimated Return on Onsite Commission Spend (ROCS) Based on a 5% Commission Offer is:</span>
-                            <span class="text-indigo-900 font-bold text-lg">7.2x</span>
+                        <div class="flex flex-col bg-white p-4 rounded-xl shadow-sm border border-indigo-100">
+                            <span class="text-gray-600 text-xs font-medium italic mb-1 text-left">Your Estimated Return on Onsite Commission Spend (ROCS) Based on a 5% Commission Offer is:</span>
+                            <span id="rocsDisplay" class="text-indigo-900 font-bold text-2xl text-right">0.0x</span>
                         </div>
                     </div>
                     <div class="mt-8 pt-6 border-t border-indigo-200 text-center">
                         <p class="text-xs text-indigo-600 font-bold uppercase mb-1">The Onsite Commission Advantage</p>
                         <p class="text-xs text-indigo-500 leading-relaxed italic">ROCS is The Return on Each Commission Dollar You Invest in Creator UGC</p>
-                            
-                        </p>
                     </div>
                 </div>
             </div>
@@ -111,44 +109,72 @@
         const playbackRate = parseFloat(document.getElementById('placement').value) || 0;
         
         if (visitors && baselineCR && aov && playbackRate) {
-            // 1. HARD CODED LIFT (56.3%)
             const liftMultiplier = 1.563; 
-            const videoCR = baselineCR * liftMultiplier; //
+            const videoCR = baselineCR * liftMultiplier;
             
-            // 2. REVENUE CALCULATIONS
             const watchers = visitors * playbackRate;
             const nonWatchers = visitors * (1 - playbackRate);
             const baselineSales = visitors * baselineCR * aov;
             const salesWithUGC = (watchers * videoCR * aov) + (nonWatchers * baselineCR * aov);
-            const incrementalRevenue = salesWithUGC - baselineSales; //
+            const incrementalRevenue = salesWithUGC - baselineSales;
             
-            // 3. DYNAMIC ROCS CALCULATION
-            // Formula: Incremental Revenue / (Total Sales with UGC * Commission Rate)
-            const commissionRate = 0.05; // Hard-coded 5%
+            const commissionRate = 0.05;
             const totalCommissionsEarned = salesWithUGC * commissionRate;
             const dynamicROCS = incrementalRevenue / totalCommissionsEarned;
 
-            // 4. UPDATE UI
             document.getElementById('incrementalSales').innerText = formatCurrency(incrementalRevenue);
             document.getElementById('salesLift').innerText = `+${((incrementalRevenue / baselineSales) * 100).toFixed(1)}%`;
-            
-            // Update the ROCS display
-            const rocsElement = document.querySelector('.text-indigo-900.font-bold.text-lg');
-            if (rocsElement) {
-                rocsElement.innerText = dynamicROCS.toFixed(1) + 'x';
-            }
+            document.getElementById('rocsDisplay').innerText = dynamicROCS.toFixed(1) + 'x';
         }
     }
 
-    // Update the "Straightened" Overlay Message
-    document.getElementById('lockOverlay').innerHTML = `
-        <div class="bg-white p-6 rounded-2xl shadow-xl border border-indigo-100 flex flex-col items-center">
-            <span class="text-3xl mb-2">📊</span>
-            <p class="text-indigo-900 font-bold leading-tight">Enter your data to<br>calculate lift</p>
-        </div>
-    `;
+    document.getElementById('unlockBtn').addEventListener('click', function() {
+        const email = document.getElementById('email').value;
+        const skus = document.getElementById('skus').value;
+        const visitors = document.getElementById('visitors').value;
+        const cr = document.getElementById('baselineCR').value;
+        const aov = document.getElementById('aov').value;
+        const placement = document.getElementById('placement').value;
 
-    // Rest of your existing Event Listeners...
+        if (!email || !email.includes('@') || !skus || !visitors || !cr || !aov || !placement) {
+            alert("Please fill in all fields to unlock your analysis.");
+            return;
+        }
+
+        this.innerHTML = '<span class="loading-spinner"></span> Unlocking...';
+        this.disabled = true;
+
+        const calcData = {
+            email: email,
+            skus: skus,
+            visitors: visitors,
+            baselineCR: cr,
+            aov: aov,
+            placement: document.getElementById('placement').options[document.getElementById('placement').selectedIndex].text,
+            incrementalRevenue: document.getElementById('incrementalSales').innerText
+        };
+
+        fetch(SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(calcData)
+        }).then(() => {
+            document.getElementById('lockOverlay').style.display = 'none';
+            document.getElementById('resultsBlurArea').classList.add('unlocked');
+            document.getElementById('email').classList.remove('pulse-border');
+            this.innerText = "Analysis Unlocked ✅";
+            this.classList.replace('bg-indigo-600', 'bg-green-600');
+        }).catch(err => {
+            alert("Connection error. Please check your Script URL.");
+            this.disabled = false;
+            this.innerText = "Unlock My Custom Analysis";
+        });
+    });
+
+    document.querySelectorAll('.calc-input').forEach(input => {
+        input.addEventListener('input', calculate);
+    });
 </script>
 </body>
 </html>
