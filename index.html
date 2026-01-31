@@ -24,36 +24,36 @@
     <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100">
         <div class="bg-indigo-600 p-8 text-white text-center">
             <h1 class="text-3xl font-bold">Onsite Commission Opportunity Calculator</h1>
-            <p class="text-indigo-100 mt-2 italic">See the revenue impact of a 56.3% conversion lift on your PDPs</p>
+            <p class="text-indigo-100 mt-2 italic">Estimate the Revenue Impact That an Onsite Commission Program Can for Your Business</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 p-8">
             <div class="space-y-5">
                 <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-1 italic">1. Company Email Address</label>
+                    <label class="block text-sm font-bold text-gray-700 mb-1 italic">Enter Your Company Email Address</label>
                     <input type="email" id="email" placeholder="Required to unlock analysis..." class="w-full p-3 border-2 border-indigo-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none pulse-border">
                 </div>
                 <hr class="border-gray-200">
                 <div class="space-y-4">
-                    <p class="text-xs font-bold text-indigo-600 uppercase tracking-widest">2. Your Business Metrics</p>
+                    <p class="text-xs font-bold text-indigo-600 uppercase tracking-widest">Customer the Calculator for Your Ecommerce Metrics</p>
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">Parent Product SKUs</label>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">How Many Parent Product SKUs Do You Currently Offer?</label>
                         <input type="number" id="skus" placeholder="e.g. 4000" class="calc-input w-full p-3 border border-gray-300 rounded-lg outline-none">
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">Monthly Unique PDP Visitors</label>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">How Many Unique Visitors Does Your Site Get Each Month?</label>
                         <input type="number" id="visitors" placeholder="e.g. 1,000,000" class="calc-input w-full p-3 border border-gray-300 rounded-lg outline-none">
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">Current Conversion Rate (%)</label>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">What is Your Current Site Visitor Conversion Rate Across All Channels?</label>
                         <input type="number" id="baselineCR" placeholder="e.g. 1.6" step="0.1" class="calc-input w-full p-3 border border-gray-300 rounded-lg outline-none">
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">Average Order Value (AOV)</label>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">What is Your Average Order Value (AOV) Across All Channels?</label>
                         <input type="number" id="aov" placeholder="e.g. 141" class="calc-input w-full p-3 border border-gray-300 rounded-lg outline-none">
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">Creator UGC Placement</label>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Where Do you Mostly Place Creator UGC On Your Site Today?</label>
                         <select id="placement" class="calc-input w-full p-3 border border-gray-300 rounded-lg outline-none bg-white font-medium">
                             <option value="" disabled selected>Select placement...</option>
                             <option value="0.30">Above the Fold (30% Playback)</option>
@@ -68,11 +68,11 @@
 
             <div id="resultsContainer" class="bg-indigo-50 p-8 rounded-2xl border border-indigo-100 flex flex-col justify-between relative overflow-hidden">
                 <div id="lockOverlay" class="absolute inset-0 z-10 flex items-center justify-center p-6 text-center bg-indigo-50/60 backdrop-blur-sm">
-                    <div class="bg-white p-6 rounded-2xl shadow-xl border border-indigo-100 transform -rotate-1">
-                        <span class="text-3xl">📊</span>
-                        <p class="text-indigo-900 font-bold mt-2">Enter your data to<br>calculate lift</p>
-                    </div>
-                </div>
+    <div class="bg-white p-6 rounded-2xl shadow-xl border border-indigo-100 flex flex-col items-center">
+        <span class="text-3xl mb-2">📊</span>
+        <p class="text-indigo-900 font-bold leading-tight">Enter your data to<br>calculate lift</p>
+    </div>
+</div>
                 <div id="resultsBlurArea" class="blur-result">
                     <h2 class="text-indigo-900 uppercase tracking-widest text-xs font-black mb-6 text-center">Custom Opportunity Report</h2>
                     <div class="text-center mb-10">
