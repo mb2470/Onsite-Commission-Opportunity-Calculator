@@ -5,59 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculate Your Onsite Commission Opportunity</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandPurple: '#818cf8', // Matches your Bright 2
+                        brandDark: '#4b5563',   // Matches your Dark 1
+                        brandLightBg: '#f9fafb'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        .loading-spinner { border: 3px solid #f3f3f3; border-top: 3px solid #4f46e5; border-radius: 50%; width: 20px; height: 20px; animation: spin 1s linear infinite; display: inline-block; }
+        .loading-spinner { border: 3px solid #f3f3f3; border-top: 3px solid #818cf8; border-radius: 50%; width: 20px; height: 20px; animation: spin 1s linear infinite; display: inline-block; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         .blur-result { filter: blur(12px); pointer-events: none; user-select: none; transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
         .unlocked { filter: blur(0); pointer-events: auto; }
         .pulse-border { animation: pulse 2s infinite; }
         @keyframes pulse {
-            0% { border-color: rgba(99, 102, 241, 0.4); }
-            50% { border-color: rgba(99, 102, 241, 1); }
-            100% { border-color: rgba(99, 102, 241, 0.4); }
+            0% { border-color: rgba(129, 140, 248, 0.4); }
+            50% { border-color: rgba(129, 140, 248, 1); }
+            100% { border-color: rgba(129, 140, 248, 0.4); }
         }
         input::placeholder { color: #cbd5e1; font-style: italic; }
     </style>
 </head>
-<body class="bg-gray-50 p-6 md:p-12">
+<body class="bg-gray-50 p-6 md:p-12 font-sans">
 
     <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100">
-        <div class="bg-indigo-600 p-8 text-white text-center">
+        <div class="bg-brandPurple p-8 text-white text-center">
             <h1 class="text-3xl font-bold">Onsite Commission Opportunity Calculator</h1>
-            <p class="text-indigo-100 mt-2 italic">Adding Creator UGC to your site drives higher conversion rates, and an Onsite Commission Program provides the scalable engine to power it. Use our free estimator to calculate the incremental revenue impact Onsite Commissions can deliver for your business.</p>
+            <p class="text-white opacity-90 mt-2 italic">Adding Creator UGC to your site drives higher conversion rates, and an Onsite Commission Program provides the scalable engine to power it. Use our free estimator to calculate the incremental revenue impact Onsite Commissions can deliver for your business.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 p-8">
             <div class="space-y-5">
                 <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-1 italic">Enter Your Company Email Address</label>
-                    <input type="email" id="email" placeholder="Required to unlock analysis..." class="w-full p-3 border-2 border-indigo-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none pulse-border">
+                    <label class="block text-sm font-bold text-brandDark mb-1 italic">Enter Your Company Email Address</label>
+                    <input type="email" id="email" placeholder="Required to unlock analysis..." class="w-full p-3 border-2 border-brandPurple/20 rounded-lg focus:ring-2 focus:ring-brandPurple outline-none pulse-border">
                 </div>
                 <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-1 italic">Enter Your Company Website URL</label>
-                    <input type="text" id="website" placeholder="e.g. www.brand.com" class="w-full p-3 border-2 border-indigo-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none">
+                    <label class="block text-sm font-bold text-brandDark mb-1 italic">Enter Your Company Website URL</label>
+                    <input type="text" id="website" placeholder="e.g. www.brand.com" class="w-full p-3 border-2 border-brandPurple/20 rounded-lg focus:ring-2 focus:ring-brandPurple outline-none">
                 </div>
                 <hr class="border-gray-200">
                 <div class="space-y-4">
-                    <p class="text-xs font-bold text-indigo-600 uppercase tracking-widest">Customize An Estimate for Your Business</p>
+                    <p class="text-xs font-bold text-brandPurple uppercase tracking-widest">Customize An Estimate for Your Business</p>
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">How Many Parent Product SKUs Do You Currently Offer?</label>
+                        <label class="block text-sm font-semibold text-brandDark mb-1">How Many Parent Product SKUs Do You Currently Offer?</label>
                         <input type="number" id="skus" placeholder="e.g. 4,000" class="calc-input w-full p-3 border border-gray-300 rounded-lg outline-none">
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">How Many Unique Visitors Does Your Site Get Each Month?</label>
+                        <label class="block text-sm font-semibold text-brandDark mb-1">How Many Unique Visitors Does Your Site Get Each Month?</label>
                         <input type="number" id="visitors" placeholder="e.g. 1,000,000" class="calc-input w-full p-3 border border-gray-300 rounded-lg outline-none">
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">What is Your Unique Visitor Conversion Rate Across All Channels?</label>
+                        <label class="block text-sm font-semibold text-brandDark mb-1">What is Your Unique Visitor Conversion Rate Across All Channels?</label>
                         <input type="number" id="baselineCR" placeholder="e.g. Enter 1.6 to for 1.6%" step="0.1" class="calc-input w-full p-3 border border-gray-300 rounded-lg outline-none">
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">What is Your Average Order Value (AOV) Across All Channels?</label>
+                        <label class="block text-sm font-semibold text-brandDark mb-1">What is Your Average Order Value (AOV) Across All Channels?</label>
                         <input type="number" id="aov" placeholder="e.g. Enter 141 for $141" class="calc-input w-full p-3 border border-gray-300 rounded-lg outline-none">
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">Where Do You Mostly Place Creator UGC Currently On Your Site Today?</label>
+                        <label class="block text-sm font-semibold text-brandDark mb-1">Where Do You Mostly Place Creator UGC Currently On Your Site Today?</label>
                         <select id="placement" class="calc-input w-full p-3 border border-gray-300 rounded-lg outline-none bg-white font-medium">
                             <option value="" disabled selected>Select placement...</option>
                             <option value="0.3955">Our Creator UGC is Mostly Above The Fold</option>
@@ -66,41 +79,41 @@
                         </select>
                     </div>
                 </div>
-                <button id="unlockBtn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-black py-4 rounded-xl shadow-lg uppercase tracking-wider mt-4">
+                <button id="unlockBtn" class="w-full bg-brandPurple hover:opacity-90 text-white font-black py-4 rounded-xl shadow-lg uppercase tracking-wider mt-4 transition-all">
                     Unlock My Custom Analysis
                 </button>
             </div>
 
-            <div id="resultsContainer" class="bg-indigo-50 p-8 rounded-2xl border border-indigo-100 flex flex-col justify-between relative overflow-hidden">
-                <div id="lockOverlay" class="absolute inset-0 z-10 flex items-center justify-center p-6 text-center bg-indigo-50/60 backdrop-blur-sm">
-                    <div class="bg-white p-6 rounded-2xl shadow-xl border border-indigo-100 flex flex-col items-center">
+            <div id="resultsContainer" class="bg-gray-50 p-8 rounded-2xl border border-gray-200 flex flex-col justify-between relative overflow-hidden">
+                <div id="lockOverlay" class="absolute inset-0 z-10 flex items-center justify-center p-6 text-center bg-gray-50/60 backdrop-blur-sm">
+                    <div class="bg-white p-6 rounded-2xl shadow-xl border border-gray-100 flex flex-col items-center">
                         <span class="text-3xl mb-2">📊</span>
-                        <p class="text-indigo-900 font-bold leading-tight">Enter Your Data to<br>Calculate Sales Lift</p>
+                        <p class="text-brandDark font-bold leading-tight">Enter Your Data to<br>Calculate Sales Lift</p>
                     </div>
                 </div>
                 <div id="resultsBlurArea" class="blur-result">
-                    <h2 class="text-indigo-900 uppercase tracking-widest text-xs font-black mb-6 text-center">Custom Onsite Commision Opportunity Report</h2>
+                    <h2 class="text-brandDark uppercase tracking-widest text-xs font-black mb-6 text-center">Custom Onsite Commision Opportunity Report</h2>
                     <div class="text-center mb-10">
-                        <p class="text-indigo-700 font-medium italic text-sm">Your Total Estimated Monthly Incremental Sales Lift Opportunity:</p>
-                        <p id="incrementalSales" class="text-5xl font-black text-indigo-600 mt-2">$0</p>
+                        <p class="text-brandDark font-medium italic text-sm">Your Total Estimated Monthly Incremental Sales Lift Opportunity:</p>
+                        <p id="incrementalSales" class="text-5xl font-black text-brandPurple mt-2">$0</p>
                     </div>
                     <div class="space-y-4">
-                        <div class="flex justify-between items-center bg-white p-4 rounded-xl shadow-sm border border-indigo-100">
-                            <span class="text-gray-600 text-sm font-medium">Incremental Sales Lift %</span>
+                        <div class="flex justify-between items-center bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                            <span class="text-brandDark text-sm font-medium">Incremental Sales Lift %</span>
                             <span id="salesLift" class="text-green-600 font-bold text-lg">+0%</span>
                         </div>
-                        <div class="flex flex-col bg-white p-4 rounded-xl shadow-sm border border-indigo-100">
-                            <span class="text-gray-600 text-xs font-medium italic mb-1 text-left">Your Estimated <b>Return on Onsite Commission Spend (ROCS)</b> Based on a <b>5%</b> Commission Rate Offer is:</span>
-                            <span id="rocsDisplay" class="text-indigo-900 font-bold text-2xl text-center">0.0x</span>
+                        <div class="flex flex-col bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                            <span class="text-brandDark text-xs font-medium italic mb-1 text-left">Your Estimated <b>Return on Onsite Commission Spend (ROCS)</b> Based on a <b>5%</b> Commission Rate Offer is:</span>
+                            <span id="rocsDisplay" class="text-brandPurple font-bold text-2xl text-center">0.0x</span>
                         </div>
                     </div>
-                    <div class="mt-8 pt-6 border-t border-indigo-200 text-center">
-                        <p class="text-xs text-indigo-600 font-bold uppercase mb-1">The Onsite Commission Advantage</p>
-                        <p class="text-xs text-indigo-500 leading-relaxed italic">ROCS is The Return on Each Commission Dollar That You Invest in Creator UGC</p>
+                    <div class="mt-8 pt-6 border-t border-gray-200 text-center">
+                        <p class="text-xs text-brandPurple font-bold uppercase mb-1">The Onsite Commission Advantage</p>
+                        <p class="text-xs text-brandDark/70 leading-relaxed italic">ROCS is The Return on Each Commission Dollar That You Invest in Creator UGC</p>
                     </div>
                     <div class="mt-6">
                         <a href="https://www.onsiteaffiliate.com/appointments" target="_blank" 
-                       class="block w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg shadow-lg text-center transition-all text-sm">Start An Onsite Commission Program Today</a>
+                       class="block w-full bg-brandPurple hover:opacity-90 text-white font-bold py-3 px-4 rounded-lg shadow-lg text-center transition-all text-sm uppercase tracking-wide">Start An Onsite Commission Program Today</a>
                     </div>
                 </div>
             </div>
@@ -108,7 +121,7 @@
     </div>
 
 <script>
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyoum5TtwRzwNCCkVu0q6Wrcm5a5U2TjJtEKvbcN8kImZHN8Ce1VYEa-6a7MQagvZvHNw/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyoum5TtwRzwNCCkVu0q6Wrcm5a5U2TjJtEKvbcN8kImZHN8Ce1VYEa-6a7MQagvZVHNw/exec';
     const formatCurrency = (val) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val);
 
     function calculate() {
@@ -129,7 +142,6 @@
             const salesWithUGC = salesWithVideoPlayback + salesWithoutVideoPlayback;
             const incrementalRevenue = salesWithUGC - baselineSales;
             
-            // Fixed ROCS Logic: Commission only on playback sales
             const commissionRate = 0.05;
             const totalCommissionsEarned = salesWithVideoPlayback * commissionRate;
             const dynamicROCS = incrementalRevenue / totalCommissionsEarned;
@@ -143,11 +155,8 @@
     document.getElementById('unlockBtn').addEventListener('click', function() {
         const email = document.getElementById('email').value.toLowerCase();
         const website = document.getElementById('website').value.toLowerCase();
-        
-        // Extract domain from email (e.g., brand.com)
         const emailDomain = email.split('@')[1];
         
-        // Check if website contains the core brand name from the email
         if (!emailDomain || !website.includes(emailDomain.split('.')[0])) {
             alert("Please provide a valid company email address that is matching to the ecommerce website address.");
             return;
@@ -188,9 +197,9 @@
             document.getElementById('resultsBlurArea').classList.add('unlocked');
             document.getElementById('email').classList.remove('pulse-border');
             this.innerText = "Analysis Unlocked ✅";
-            this.classList.replace('bg-indigo-600', 'bg-green-600');
+            this.classList.replace('bg-brandPurple', 'bg-green-600');
         }).catch(err => {
-            alert("Connection error. Please check your Script URL.");
+            alert("Connection error.");
             this.disabled = false;
             this.innerText = "Unlock My Custom Analysis";
         });
