@@ -109,17 +109,25 @@
         const playbackRate = parseFloat(document.getElementById('placement').value) || 0;
         
         if (visitors && baselineCR && aov && playbackRate) {
-            const liftMultiplier = 1.563; 
+            const liftMultiplier = 1.563; // 56.3% Conversion Lift
             const videoCR = baselineCR * liftMultiplier;
             
             const watchers = visitors * playbackRate;
             const nonWatchers = visitors * (1 - playbackRate);
+            
             const baselineSales = visitors * baselineCR * aov;
-            const salesWithUGC = (watchers * videoCR * aov) + (nonWatchers * baselineCR * aov);
+            
+            // Sales breakdown
+            const salesWithVideoPlayback = watchers * videoCR * aov;
+            const salesWithoutVideoPlayback = nonWatchers * baselineCR * aov;
+            const salesWithUGC = salesWithVideoPlayback + salesWithoutVideoPlayback;
+            
             const incrementalRevenue = salesWithUGC - baselineSales;
             
+            // NEW LOGIC: Commission only on sales that include a playback
             const commissionRate = 0.05;
-            const totalCommissionsEarned = salesWithUGC * commissionRate;
+            const totalCommissionsEarned = salesWithVideoPlayback * commissionRate;
+            
             const dynamicROCS = incrementalRevenue / totalCommissionsEarned;
 
             document.getElementById('incrementalSales').innerText = formatCurrency(incrementalRevenue);
@@ -127,7 +135,6 @@
             document.getElementById('rocsDisplay').innerText = dynamicROCS.toFixed(1) + 'x';
         }
     }
-
     document.getElementById('unlockBtn').addEventListener('click', function() {
         const email = document.getElementById('email').value;
         const skus = document.getElementById('skus').value;
