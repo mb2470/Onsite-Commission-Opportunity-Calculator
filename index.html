@@ -131,7 +131,7 @@
     </div>
 
 <script>
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyoum5TtwRzwNCCkVu0q6Wrcm5a5U2TjJtEKvbcN8kImZHN8Ce1VYEa-6a7MQagvZVHNw/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwTLGqhWFEMmLIy4bNlyRVWwkbl4gfYrMbZ8v9bmR7soK93bYQSPzORh2G9iZE9oZ8wIA/exec';
     const formatCurrency = (val) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val);
 
 function calculate() {
@@ -195,16 +195,19 @@ function calculate() {
         this.innerHTML = '<span class="loading-spinner"></span> Unlocking...';
         this.disabled = true;
 
-        const calcData = {
-            email: email,
-            website: website,
-            skus: skus,
-            visitors: visitors,
-            baselineCR: cr,
-            aov: aov,
-            placement: document.getElementById('placement').options[document.getElementById('placement').selectedIndex].text,
-            incrementalRevenue: document.getElementById('incrementalSales').innerText
-        };
+// Ensure these keys match the column headers/logic in your Apps Script
+const calcData = {
+    email: email,
+    website: website,
+    skus: skus,
+    visitors: visitors,
+    baselineCR: cr,
+    aov: aov,
+    // Add the new field here
+    existingCoverage: document.getElementById('existingCoverage').value, 
+    placement: document.getElementById('placement').options[document.getElementById('placement').selectedIndex].text,
+    incrementalRevenue: document.getElementById('incrementalSales').innerText
+};
 
         fetch(SCRIPT_URL, {
             method: 'POST',
