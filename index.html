@@ -87,40 +87,46 @@
                     Unlock My Custom Analysis
                 </button>
             </div>
+            <div id="resultsContainer" class="bg-gray-50 p-8 rounded-2xl border border-gray-200 relative overflow-hidden">
+    <div id="lockOverlay" class="absolute inset-0 z-10 flex items-center justify-center p-6 text-center bg-gray-50/60 backdrop-blur-sm">
+        <div class="bg-white p-6 rounded-2xl shadow-xl border border-gray-100 flex flex-col items-center">
+            <span class="text-3xl mb-2">📊</span>
+            <p class="text-brandDark font-bold leading-tight text-center">Enter Your Data to<br>Calculate Sales Lift</p>
+        </div>
+    </div>
+    
+    <div id="resultsBlurArea" class="blur-result flex flex-col justify-start">
+        <h2 class="text-brandDark uppercase tracking-widest text-xs font-black mb-4 text-center">Custom Onsite Commission Opportunity Report</h2>
+        
+        <div class="text-center mb-6">
+            <p class="text-brandDark font-medium italic text-sm">Your Total Estimated Monthly Incremental Sales Lift Opportunity:</p>
+            <p id="incrementalSales" class="text-5xl font-black text-brandPurple mt-2">$0</p>
+        </div>
 
-            <div id="resultsContainer" class="bg-gray-50 p-8 rounded-2xl border border-gray-200 flex flex-col justify-between relative overflow-hidden">
-                <div id="lockOverlay" class="absolute inset-0 z-10 flex items-center justify-center p-6 text-center bg-gray-50/60 backdrop-blur-sm">
-                    <div class="bg-white p-6 rounded-2xl shadow-xl border border-gray-100 flex flex-col items-center">
-                        <span class="text-3xl mb-2">📊</span>
-                        <p class="text-brandDark font-bold leading-tight text-center">Enter Your Data to<br>Calculate Sales Lift</p>
-                    </div>
-                </div>
-                <div id="resultsBlurArea" class="blur-result h-full flex flex-col">
-                    <h2 class="text-brandDark uppercase tracking-widest text-xs font-black mb-6 text-center">Custom Onsite Commision Opportunity Report</h2>
-                    <div class="text-center mb-10">
-                        <p class="text-brandDark font-medium italic text-sm">Your Total Estimated Monthly Incremental Sales Lift Opportunity:</p>
-                        <p id="incrementalSales" class="text-5xl font-black text-brandPurple mt-2">$0</p>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-center bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-                            <span class="text-brandDark text-sm font-medium">Incremental Sales Lift %</span>
-                            <span id="salesLift" class="text-green-600 font-bold text-lg">+0%</span>
-                        </div>
-                        <div class="flex flex-col bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-                            <span class="text-brandDark text-xs font-medium italic mb-1 text-left">Your Estimated <b>Return on Onsite Commission Spend (ROCS)</b> Based on a <b>5%</b> Commission Rate Offer is:</span>
-                            <span id="rocsDisplay" class="text-brandPurple font-bold text-2xl text-center">0.0x</span>
-                        </div>
-                    </div>
-                    <div class="mt-8 pt-6 border-t border-gray-200 text-center flex-grow">
-                        <p class="text-xs text-brandPurple font-bold uppercase mb-1">The Onsite Commission Advantage</p>
-                        <p class="text-xs text-brandDark/70 leading-relaxed italic">ROCS is The Return on Each Commission Dollar That You Invest in Creator UGC</p>
-                    </div>
-                    <div class="mt-6">
-                        <a href="https://www.onsiteaffiliate.com/appointments" target="_blank" 
-                       class="block w-full bg-brandPurple hover:opacity-90 text-white font-bold py-3 px-4 rounded-lg shadow-lg text-center transition-all text-sm uppercase tracking-wide">Start An Onsite Commission Program Today</a>
-                    </div>
-                </div>
+        <div class="space-y-3">
+            <div class="flex justify-between items-center bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                <span class="text-brandDark text-sm font-medium">Incremental Sales Lift %</span>
+                <span id="salesLift" class="text-green-600 font-bold text-lg">+0%</span>
             </div>
+            <div class="flex flex-col bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                <span class="text-brandDark text-xs font-medium italic mb-1 text-left">Your Estimated <b>Return on Onsite Commission Spend (ROCS)</b> Based on a <b>5%</b> Commission Rate Offer is:</span>
+                <span id="rocsDisplay" class="text-brandPurple font-bold text-2xl text-center">0.0x</span>
+            </div>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-gray-200 text-center">
+            <p class="text-xs text-brandPurple font-bold uppercase mb-1">The Onsite Commission Advantage</p>
+            <p class="text-xs text-brandDark/70 leading-relaxed italic">ROCS is The Return on Each Commission Dollar That You Invest in Creator UGC</p>
+        </div>
+
+        <div class="mt-6">
+            <a href="https://www.onsiteaffiliate.com/appointments" target="_blank" 
+               class="block w-full bg-brandPurple hover:opacity-90 text-white font-bold py-4 px-4 rounded-lg shadow-lg text-center transition-all text-sm uppercase tracking-wide">
+               CLICK HERE TO BEGIN YOUR ONSITE COMMISSION JOURNEY
+            </a>
+        </div>
+    </div>
+</div>
         </div>
     </div>
 
