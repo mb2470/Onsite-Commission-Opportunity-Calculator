@@ -70,9 +70,9 @@
                         <input type="number" id="aov" placeholder="e.g. Enter 141 for $141" class="calc-input w-full p-3 border border-gray-300 rounded-lg outline-none">
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-brandDark mb-1">What % of Your Parent Product SKUs Already Have Creator UGC Coverage?</label>
-                        <input type="number" id="aov" placeholder="e.g. Enter 25 for 25%" class="calc-input w-full p-3 border border-gray-300 rounded-lg outline-none">
-                    </div>
+    <label class="block text-sm font-semibold text-brandDark mb-1">What % of Your Parent Product SKUs Already Have Creator UGC Coverage?</label>
+    <input type="number" id="existingCoverage" placeholder="e.g. Enter 25 for 25%" class="calc-input w-full p-3 border border-gray-300 rounded-lg outline-none">
+</div>
                     <div>
                         <label class="block text-sm font-semibold text-brandDark mb-1">Where Do You Mostly Place Creator UGC On Your Site Today?</label>
                         <select id="placement" class="calc-input w-full p-3 border border-gray-300 rounded-lg outline-none bg-white font-medium text-brandDark">
@@ -134,33 +134,42 @@
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyoum5TtwRzwNCCkVu0q6Wrcm5a5U2TjJtEKvbcN8kImZHN8Ce1VYEa-6a7MQagvZVHNw/exec';
     const formatCurrency = (val) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val);
 
-    function calculate() {
-        const visitors = parseFloat(document.getElementById('visitors').value) || 0;
-        const baselineCR = (parseFloat(document.getElementById('baselineCR').value) || 0) / 100;
-        const aov = parseFloat(document.getElementById('aov').value) || 0;
-        const playbackRate = parseFloat(document.getElementById('placement').value) || 0;
-        
-        if (visitors && baselineCR && aov && playbackRate) {
-            const liftMultiplier = 1.563; 
-            const videoCR = baselineCR * liftMultiplier;
-            const watchers = visitors * playbackRate;
-            const nonWatchers = visitors * (1 - playbackRate);
-            const baselineSales = visitors * baselineCR * aov;
-            
-            const salesWithVideoPlayback = watchers * videoCR * aov;
-            const salesWithoutVideoPlayback = nonWatchers * baselineCR * aov;
-            const salesWithUGC = salesWithVideoPlayback + salesWithoutVideoPlayback;
-            const incrementalRevenue = salesWithUGC - baselineSales;
-            
-            const commissionRate = 0.05;
-            const totalCommissionsEarned = salesWithVideoPlayback * commissionRate;
-            const dynamicROCS = incrementalRevenue / totalCommissionsEarned;
+function calculate() {
+    const visitors = parseFloat(document.getElementById('visitors').value) || 0;
+    const baselineCR = (parseFloat(document.getElementById('baselineCR').value) || 0) / 100;
+    const aov = parseFloat(document.getElementById('aov').value) || 0;
+    const playbackRate = parseFloat(document.getElementById('placement').value) || 0;
+    
+    // NEW: Capture existing coverage (e.g., 25 becomes 0.25)
+    const existingCoverage = (parseFloat(document.getElementById('existingCoverage').value) || 0) / 100;
 
-            document.getElementById('incrementalSales').innerText = formatCurrency(incrementalRevenue);
-            document.getElementById('salesLift').innerText = `+${((incrementalRevenue / baselineSales) * 100).toFixed(1)}%`;
-            document.getElementById('rocsDisplay').innerText = dynamicROCS.toFixed(1) + 'x';
-        }
+    if (visitors && baselineCR && aov && playbackRate) {
+        const liftMultiplier = 1.563; 
+        const videoCR = baselineCR * liftMultiplier;
+        const watchers = visitors * playbackRate;
+        const nonWatchers = visitors * (1 - playbackRate);
+        const baselineSales = visitors * baselineCR * aov;
+        
+        const salesWithVideoPlayback = watchers * videoCR * aov;
+        const salesWithoutVideoPlayback = nonWatchers * baselineCR * aov;
+        const salesWithUGC = salesWithVideoPlayback + salesWithoutVideoPlayback;
+        
+        // Calculate the raw incremental revenue
+        let incrementalRevenue = salesWithUGC - baselineSales;
+        
+        // NEW: Reduce the lift based on what they already have.
+        // If they have 25% coverage, they only have 75% of the total lift left to gain.
+        incrementalRevenue = incrementalRevenue * (1 - existingCoverage);
+        
+        const commissionRate = 0.05;
+        const totalCommissionsEarned = salesWithVideoPlayback * commissionRate;
+        const dynamicROCS = incrementalRevenue / totalCommissionsEarned;
+
+        document.getElementById('incrementalSales').innerText = formatCurrency(incrementalRevenue);
+        document.getElementById('salesLift').innerText = `+${((incrementalRevenue / baselineSales) * 100).toFixed(1)}%`;
+        document.getElementById('rocsDisplay').innerText = dynamicROCS.toFixed(1) + 'x';
     }
+}
 
     document.getElementById('unlockBtn').addEventListener('click', function() {
         const email = document.getElementById('email').value.toLowerCase();
